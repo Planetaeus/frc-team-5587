@@ -17,6 +17,7 @@ public class Robot extends IterativeRobot {
 	RobotDrive myRight;
 	Joystick stick;
 	int autoLoopCounter;
+	//Rawr Rawr RAWR!!
 	
     /**
      * This function is run when the robot is first started up and should be
