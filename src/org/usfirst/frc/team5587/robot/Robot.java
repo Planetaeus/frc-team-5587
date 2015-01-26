@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.Encoder;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -13,9 +15,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	RobotDrive myLeft;
-	RobotDrive myRight;
-	Joystick stick;
+	RobotDrive myRobot; // i think we should create a library class for these things. @Daren
+	Joystick stick;     // we should probably organise the code a bit before we do some real programming. @Daren
+	Encoder leftWheelsCount, rightWheelsCount, liftPulleyCount;
+	
 	int autoLoopCounter;
 	//Rawr Rawr RAWR!!
 	
@@ -24,8 +27,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	myLeft = new RobotDrive(0,1);
-    	myRight = new RobotDrive(2,3)
+    	myRobot = new RobotDrive(0,1,2,3);
     	stick = new Joystick(0);
     }
     
@@ -42,21 +44,19 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	if(autoLoopCounter < 200) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
-			myLeft.drive(-0.5, 0.0); 	// drive forwards half speed
-			myRight.drive(0.5, 0.0);
+    		myRobot.drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
-			myLeft.drive(0.0, 0.0); 	// stop robot
-			myRight.drive(0.0, 0.0);
+			myRobot.drive(0.0, 0.0); 	// stop robot
+			
 		}
     	if(autoLoopCounter < 200) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
-			myLeft.drive(0.5, 0.0); 	// drive forwards half speed
-			myRight.drive(-0.5, 0.0);
+    		myRobot.drive(0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
-			myLeft.drive(0.0, 0.0); 	// stop robot
-			myRight.drive(0.0, 0.0);
+			myRobot.drive(0.0, 0.0); 	// stop robot
+			
 		}
     }
     
