@@ -2,7 +2,7 @@ package org.usfirst.frc.team5587.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
+import org.usfirst.frc.team5587.robot.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	myRobot = new RobotDrive(0,1,2,3);
+    	myRobot = new RobotDrive(2,3,0,1);
     	stick = new Joystick(0);
     }
     
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	if(autoLoopCounter < 200) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
-    		myRobot.drive(-0.5, 0.0); 	// drive forwards half speed
+    		myRobot.drive(-0.1, 1.0); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
 			myRobot.drive(0.0, 0.0); 	// stop robot
@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		}
     	if(autoLoopCounter < 200) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
-    		myRobot.drive(0.5, 0.0); 	// drive forwards half speed
+    		myRobot.drive(0.1, 1.0); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
 			myRobot.drive(0.0, 0.0); 	// stop robot
@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
     	LiveWindow.run();
+        myRobot.arcadeDrive(stick);
     }
     
 }
