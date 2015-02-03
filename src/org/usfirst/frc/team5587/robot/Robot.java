@@ -46,6 +46,9 @@ public class Robot extends IterativeRobot
      */
     public void autonomousPeriodic() 
     {
+    	//Hello guys! we are told to write the easier codes, so lets do it soon guys.
+    	//also we need to figure out how to use the encoder
+    	
     	if(autoLoopCounter < 450) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
     		myRobot.drive(-0.25, 0); 	// drive forwards half speed
@@ -96,6 +99,6 @@ public class Robot extends IterativeRobot
     
     public double clicks(double d, double c)
     {
-    	return d / c
+    	return d / c;
     }
 }
