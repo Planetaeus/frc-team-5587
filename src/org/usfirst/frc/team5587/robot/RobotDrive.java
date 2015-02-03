@@ -455,7 +455,7 @@ public class RobotDrive implements MotorSafety
         double leftMotorSpeed;
         double rightMotorSpeed;
 
-        moveValue = limit(moveValue)/1.75;//This is divided by two so it doesn't go too fast and die. 
+        moveValue = limit(moveValue)/1.75; //This is divided by two so it doesn't go too fast and die. 
         rotateValue = limit(rotateValue)/1.5;
 
         if (squaredInputs) 

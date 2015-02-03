@@ -18,7 +18,16 @@ public class Robot extends IterativeRobot
 {
 	RobotDrive myRobot; // i think we should create a library class for these things. @Daren
 	Joystick stick;     // we should probably organise the code a bit before we do some real programming. @Daren
-	Encoder leftWheelsCount, rightWheelsCount, liftPulleyCount;
+	
+	/*Encoder leftWheelsCount = new Encoder();
+	 *Encoder rightWheelsCount = new Encoder();
+	 *Encoder liftPulleyCount= new Encoder(aChannel,bChannel, [+or- for direction]);
+	 *Parameters:
+aChannel The a channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
+bChannel The b channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
+reverseDirection represents the orientation of the encoder and inverts the output values if necessary 
+so forward represents positive values.
+	 */
 	
 	int autoLoopCounter;
 	//Rawr Rawr RAWR!!
