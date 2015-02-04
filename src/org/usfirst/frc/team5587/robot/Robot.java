@@ -2,9 +2,13 @@ package org.usfirst.frc.team5587.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+
 import org.usfirst.frc.team5587.robot.RobotDrive;
+
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.CounterBase;
+
 
 
 /**
@@ -19,12 +23,14 @@ public class Robot extends IterativeRobot
 	RobotDrive myRobot; // i think we should create a library class for these things. @Daren
 	Joystick stick;     // we should probably organise the code a bit before we do some real programming. @Daren
 	
-	/*Encoder leftWheelsCount = new Encoder();
-	 *Encoder rightWheelsCount = new Encoder();
-	 *Encoder liftPulleyCount= new Encoder(aChannel,bChannel, [+or- for direction]);
-	 *Parameters:
-aChannel The a channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
-bChannel The b channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
+	
+	 Encoder leftWheelsCount = new Encoder(5,6,false);
+	 Encoder rightWheelsCount = new Encoder(1,2,false);
+	 Encoder liftPulleyCount = new Encoder(1,2,false);
+	 /*
+	 Encoder liftPulleyCount= new Encoder(aChannel,bChannel, [+or- for direction]);
+	 Parameters: aChannel The a channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
+                 bChannel The b channel DIO channel. 0-9 are on-board, 10-25 are on the MXP port
 reverseDirection represents the orientation of the encoder and inverts the output values if necessary 
 so forward represents positive values.
 	 */
@@ -58,9 +64,9 @@ so forward represents positive values.
     	//Hello guys! we are told to write the easier codes, so lets do it soon guys.
     	//also we need to figure out how to use the encoder
     	
-    	if(autoLoopCounter < 450) //Check if we've completed 100 loops (approximately 2 seconds)
+    	if(autoLoopCounter < 450) 
 		{
-    		myRobot.drive(-0.25, 0); 	// drive forwards half speed
+    		myRobot.drive(-0.25, 0); 	
 			autoLoopCounter++;
 		} 
     	else 
@@ -90,6 +96,9 @@ so forward represents positive values.
     public void testPeriodic() 
     {
     	LiveWindow.run();
+    	leftWheelsCount.updateTable();
+    	leftWheelsCount.startLiveWindowMode();
+    	
         myRobot.arcadeDrive(stick);
     }
     
