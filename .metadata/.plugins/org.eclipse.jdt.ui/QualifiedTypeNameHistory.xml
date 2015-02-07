@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.RobotDrive"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team5587.robot.RobotMap"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team5587.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team5587.robot.commands.Lower"/>
+</qualifiedTypeNameHistroy>
