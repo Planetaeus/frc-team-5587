@@ -4,13 +4,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.CameraServer;
-
-import org.usfirst.frc.team5587.robot.RobotDrive;
-
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase;
-
+import org.usfirst.frc.team5587.robot.RobotDrive;
 
 
 /**
@@ -25,9 +22,9 @@ public class Robot extends IterativeRobot
 	RobotDrive myRobot; // i think we should create a library class for these things. @Daren
 	Joystick stick;     // we should probably organise the code a bit before we do some real programming. @Daren
 	CameraServer server;
-	Encoder leftWheelsCount = new Encoder(0,1,false);
-	//Encoder rightWheelsCount = new Encoder(1,2,false);
-	//Encoder liftPulleyCount = new Encoder(1,2,false);
+	Encoder eLeftWheels = new Encoder(0,1,false);
+	//Encoder eRightWheels = new Encoder(1,2,false);
+	//Encoder eLiftPulley = new Encoder(1,2,false);
 	
 	 /*
 	 Encoder liftPulleyCount= new Encoder(aChannel,bChannel, [+or- for direction]);
@@ -36,15 +33,8 @@ public class Robot extends IterativeRobot
 reverseDirection represents the orientation of the encoder and inverts the output values if necessary 
 so forward represents positive values.
 	 */
-	
-    
 	int autoLoopCounter;
-	//Rawr Rawr RAWR!!
 	
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
     public void robotInit() 
     {
     	myRobot = new RobotDrive(2,3,0,1);
@@ -87,7 +77,7 @@ so forward represents positive values.
         server.setQuality(50);
         //the camera name (ex "cam0") can be found through the roborio web interface
         server.startAutomaticCapture("cam0");
-        leftWheelsCount.reset();
+        eLeftWheels.reset();
     }
 
     /**
@@ -96,7 +86,7 @@ so forward represents positive values.
     public void teleopPeriodic() 
     {
         myRobot.arcadeDrive(stick);
-        DriverStation.reportError( "" + leftWheelsCount.getRaw(), false);
+        DriverStation.reportError( "" + eLeftWheels.getRaw(), false);
     } 
     
     /**
@@ -105,8 +95,8 @@ so forward represents positive values.
     public void testPeriodic() 
     {
     	LiveWindow.run();
-    	leftWheelsCount.updateTable();
-    	leftWheelsCount.startLiveWindowMode();
+    	eLeftWheels.updateTable();
+    	eLeftWheels.startLiveWindowMode();
     	
         myRobot.arcadeDrive(stick);
     }
