@@ -1,4 +1,5 @@
-package org.usfirst.frc.team5587.robot;
+package org.usfirst.frc.team5587.robotcoordinate;
+
 
 public class Thing 
 {
