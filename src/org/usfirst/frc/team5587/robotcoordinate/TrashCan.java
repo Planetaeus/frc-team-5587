@@ -1,0 +1,10 @@
+package org.usfirst.frc.team5587.robotcoordinate;
+/*
+public class TrashCan extends Thing {
+
+	public TrashCan() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
+*/
