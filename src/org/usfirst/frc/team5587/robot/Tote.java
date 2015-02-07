@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5587.robot;
-
+/*
 public class Tote extends Thing {
 
 	public Tote() {
@@ -7,3 +7,4 @@ public class Tote extends Thing {
 	}
 
 }
+*/

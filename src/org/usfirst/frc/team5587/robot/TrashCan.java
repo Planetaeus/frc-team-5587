@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5587.robot;
-
+/*
 public class TrashCan extends Thing {
 
 	public TrashCan() {
@@ -7,3 +7,4 @@ public class TrashCan extends Thing {
 	}
 
 }
+*/

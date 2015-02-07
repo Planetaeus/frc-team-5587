@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5587.robot;
 
-public class Arena extends Thing {
+//public class Arena extends Thing {
 
-	public Arena() {
+	//public Arena() {
 		// TODO Auto-generated constructor stub
-	}
+	//}
 
-}
+//}
