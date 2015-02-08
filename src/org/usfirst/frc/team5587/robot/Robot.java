@@ -50,10 +50,10 @@ so forward represents positive values.
     public void robotInit() 
     {
         myRobot = new RobotDrive(2,3,0,1);
-        stick = new Joystick(0);
-        stick1 = new Joystick(1);
-        motor = new Victor(9);
-        motor1 = new Victor(8);
+        stick = new Joystick(0); //Initialize first joystick as stick @Drew
+        stick1 = new Joystick(1); //Initialize second joystick as stick1 @Drew
+        motor = new Victor(9); //Initialize Victor motor controller #9 on lift @Drew
+        motor1 = new Victor(8); //Initialize Victor motor controller #8 on lift @Drew
         
     }
     
@@ -89,14 +89,14 @@ so forward represents positive values.
      */
     public void teleopInit()
     {
-        server = CameraServer.getInstance();
-        server.setQuality(50);
+        server = CameraServer.getInstance(); //Starts primary CameraServer @Drew
+        server.setQuality(50); //sets camera quality for primary server @Drew
         //the camera name (ex "cam0") can be found through the roborio web interface
-        server.startAutomaticCapture("cam0");
-        server1 = CameraServer.getInstance();
-        server1.setQuality(50);
+        server.startAutomaticCapture("cam0"); //TODO starts first camera[Which one ADD HERE] @Drew
+        server1 = CameraServer.getInstance(); //Starts secondary CameraServer @Drew
+        server1.setQuality(50); //sets camera quality for secondary server @Drew
         //the camera name (ex "cam0") can be found through the roborio web interface
-        server1.startAutomaticCapture("cam1");
+        server1.startAutomaticCapture("cam1"); //TODO starts secondary camera[Which one ADD HERE] @Drew
         
         eLeftWheels.reset();
     }
