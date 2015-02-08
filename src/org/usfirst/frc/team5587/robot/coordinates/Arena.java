@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5587.robotcoordinate;
+package org.usfirst.frc.team5587.robot.coordinates;
 
 //public class Arena extends Thing {
 
