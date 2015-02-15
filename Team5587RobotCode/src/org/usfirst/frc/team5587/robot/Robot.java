@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot
     {
         Scheduler.getInstance().run();
         DriverStation.reportError( "LiftE " + Robot.lift.getEncoderCount(), true);
+        //DriverStation.reportError( "JoyStick2 " + Robot.hi.getstick2(), true);
         //DriverStation.reportError( "RFeetE " + Robot.feet.getEncoderCount(Robot.feet.right), false);
         //DriverStation.reportError( "LFeetE " + Robot.feet.getEncoderCount(Robot.feet.left), false);
     }

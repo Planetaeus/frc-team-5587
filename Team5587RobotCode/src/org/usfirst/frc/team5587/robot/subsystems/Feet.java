@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5587.robot.subsystems;
 
 import org.usfirst.frc.team5587.robot.RobotPorts;
-import org.usfirst.frc.team5587.robot.commands.Drive;
+import org.usfirst.frc.team5587.robot.commands.drive.Drive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;

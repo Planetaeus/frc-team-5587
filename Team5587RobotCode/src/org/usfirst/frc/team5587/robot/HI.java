@@ -1,17 +1,18 @@
 package org.usfirst.frc.team5587.robot;
 
-import org.usfirst.frc.team5587.robot.commands.MinusDrivingSpeed;
-import org.usfirst.frc.team5587.robot.commands.DownLiftWithButton;
-import org.usfirst.frc.team5587.robot.commands.PlusDrivingSpeed;
-import org.usfirst.frc.team5587.robot.commands.UpLiftWithButton;
-import org.usfirst.frc.team5587.robot.commands.StopLift;
+import org.usfirst.frc.team5587.robot.commands.drive.MinusDrivingSpeed;
+import org.usfirst.frc.team5587.robot.commands.drive.PlusDrivingSpeed;
+import org.usfirst.frc.team5587.robot.commands.liftstuff.StopLift;
+import org.usfirst.frc.team5587.robot.commands.liftstuff.UpLiftWithButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class HI 
 {
-	private Joystick stick = new Joystick(RobotPorts.joystick);
+	private Joystick stick = new Joystick(RobotPorts.joystickMain);
+	private Joystick stickSecond = new Joystick(RobotPorts.joystickSecond);
+	
 	private JoystickButton PlusDriveSpeed;
 	private JoystickButton MinusDriveSpeed;
 	private JoystickButton LiftUp;
@@ -27,24 +28,27 @@ public class HI
 		MinusDriveSpeed.toggleWhenPressed(new MinusDrivingSpeed());
 		
 		LiftUp = new JoystickButton(stick, 3);
-		LiftUp.toggleWhenActive(new DownLiftWithButton());
-		/*
-		LiftDown = new JoystickButton(stick, 4);
-		LiftDown.toggleWhenActive(new UpLiftWithButton());
+		LiftUp.toggleWhenActive(new UpLiftWithButton());
 		
 		StopLift= new JoystickButton(stick,6);
 		StopLift.toggleWhenActive(new StopLift());
-		*/
+		
 		
 		
 	}
-	public Joystick getstick() 
+	public Joystick getstick() //this is currently used for driving 
 	{
 		return stick;
 	}
-	public double throttle()
+	
+	public Joystick getstick2() // currently used for lift
 	{
-	return stick.getThrottle()+1.00000;
+		return stickSecond;
+	}
+	
+	public double throttle() // used to to scale from 0-2 for lifting
+	{
+	return stick.getThrottle()+1;
 	}
 
 }
