@@ -2,10 +2,12 @@ package org.usfirst.frc.team5587.robot.subsystems;
 
 import org.usfirst.frc.team5587.robot.Robot;
 import org.usfirst.frc.team5587.robot.RobotPorts;
-import org.usfirst.frc.team5587.robot.commands.MoveLiftWithThrottle;
+import org.usfirst.frc.team5587.robot.commands.liftstuff.MoveLiftWithStickSecond;
+import org.usfirst.frc.team5587.robot.commands.liftstuff.MoveLiftWithThrottle;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class Lift extends Subsystem 
@@ -15,31 +17,37 @@ public class Lift extends Subsystem
 	private VictorSP LiftVictorSP1, LiftVictorSP2;
 	private Encoder LiftEncoder;
 	
-	public double LiftMotorSpeed = -.17;//negative to correct for direction
+	public double LiftMotorSpeed = .1;
 	public int countsToTopOfLift = 500;//FIND ME 
 	
     public void initDefaultCommand() 
     {
         // Set the default command for a subsystem here.
-        setDefaultCommand( new MoveLiftWithThrottle() );
+        setDefaultCommand(new MoveLiftWithStickSecond());
+    	//setDefaultCommand(new MoveLiftWithThrottle());
     }
     
     public Lift()
     {
-    	LiftVictorSP1 = new  VictorSP( RobotPorts.liftMotor1 );
-    	LiftVictorSP2 = new VictorSP( RobotPorts.liftMotor2 );
-    	LiftEncoder = new Encoder( RobotPorts.liftEncoderA, RobotPorts.liftEncoderB );
+    	LiftVictorSP1 = new  VictorSP(RobotPorts.liftMotor1);
+    	LiftVictorSP2 = new VictorSP(RobotPorts.liftMotor2);
+    	LiftEncoder = new Encoder(RobotPorts.liftEncoderA, RobotPorts.liftEncoderB);
     }
     
-    public void setLiftSpeed(double speed)
+    public void setLiftSpeed(double Something)
     {
-    	LiftVictorSP1.set( speed );
-    	LiftVictorSP2.set( speed );
+    	LiftVictorSP1.set(Something);
+    	LiftVictorSP2.set(Something);
     }
+    
+    public double getScaledToThrottle()
+    {  //gives double between 0/2 so it can be used with throttle
+    	return ((LiftEncoder.getRaw()*2)/countsToTopOfLift);
+    }  //used in the statements below to create booleans
     
     public boolean liftequalsThrottle()
     {
-    	if ( Robot.lift.getScaledToThrottle() == Robot.hi.throttle() )
+    	if (Robot.lift.getScaledToThrottle() == Robot.hi.throttle())
     	{
     		return true;
     	}
@@ -73,53 +81,64 @@ public class Lift extends Subsystem
     	}
     }
     
-    /**
-     * Returns the difference between the positions of the lift and the throttle.
-     * 
-     * @author Michael
-     */
-    public double liftThrottleDiff()
+    public boolean liftNotAtBottom()
     {
-    	double liftPos = getScaledToThrottle(), throttlePos = Robot.hi.throttle();
-    	
-    	return liftPos - throttlePos;
+    	if (LiftEncoder.getRaw() > 0)
+    	{
+    		return true;
+    	}
+    	else
+    		return false;
     }
     
-    /**
-     * Sets the lift motors pulling the cage up
-     */
-    public void upLift()
+    public boolean liftAtBottom()
     {
-    	LiftVictorSP1.set( LiftMotorSpeed );
-    	LiftVictorSP2.set( LiftMotorSpeed );
+    	if (LiftEncoder.getRaw() == 0)
+    	{
+    		return true;
+    	}
+    	else
+    		return false;
+    }
+    public boolean liftAtTop()
+    {
+    	if (LiftEncoder.getRaw() == countsToTopOfLift)
+    	{
+    		return true;
+    	}
+    	else
+    		return false;
     }
     
-    /**
-     * Sets the lift motors letting the cage down
-     */
-    public void downLift()
+    
+    public int getEncoderCount()
     {
-    	LiftVictorSP1.set( -LiftMotorSpeed );
-    	LiftVictorSP2.set( -LiftMotorSpeed );
+    	return LiftEncoder.getRaw();
+    }  
+    
+    public void upLift()//not really used anymore
+    {
+    	LiftVictorSP1.set(LiftMotorSpeed);
+    	LiftVictorSP2.set(LiftMotorSpeed);
+    }
+    public void upLiftAtSpeed(double Meow) //used alot in command MoveWithThrottle
+    {
+    	LiftVictorSP1.set(Meow);
+    	LiftVictorSP2.set(Meow);
     }
     
-    /**
-     * Stops the lift motors.
-     */
-    public void stopLift()
+    public void stopLift()//not really used anymore
     {
     	LiftVictorSP1.set(0);
     	LiftVictorSP2.set(0);
     }
     
-    public int getEncoderCount()
+    public void moveLiftWithJoystickSecond(Joystick Blah)
     {
-    	return LiftEncoder.getRaw();
-    }
-    
-    public double getScaledToThrottle()
-    {
-    	return ( ( LiftEncoder.getRaw() * 2 ) / countsToTopOfLift );
+    	double yValueSpeed = 0;
+    	yValueSpeed = Blah.getY();
+    	LiftVictorSP1.set(yValueSpeed);
+    	LiftVictorSP2.set(yValueSpeed);
     }
     
 }

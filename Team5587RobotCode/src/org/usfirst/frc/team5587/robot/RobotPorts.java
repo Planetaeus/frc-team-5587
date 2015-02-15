@@ -23,11 +23,8 @@ public class RobotPorts
 	public static final int liftEncoderA = 0;
 	public static final int liftEncoderB = 1;
 	
-	//here are the camera ips
-	public static final String topCamera = "";
-	public static final String bottomCamera = "";
-	
 	//usb port order is here
-	public static final int joystick = 0;
+	public static final int joystickMain = 0;
+	public static final int joystickSecond = 1;
 
 }
