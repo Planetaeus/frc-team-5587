@@ -44,7 +44,7 @@ public class HI
 	}
 	public double throttle()
 	{
-	return stick.getThrottle()+1.00000;
+	return stick.getThrottle()+1;
 	}
 
 }

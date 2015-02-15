@@ -21,25 +21,25 @@ public class Lift extends Subsystem
     public void initDefaultCommand() 
     {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new MoveLiftWithThrottle());
+        setDefaultCommand( new MoveLiftWithThrottle() );
     }
     
     public Lift()
     {
-    	LiftVictorSP1 = new  VictorSP(RobotPorts.liftMotor1);
-    	LiftVictorSP2 = new VictorSP(RobotPorts.liftMotor2);
-    	LiftEncoder = new Encoder(RobotPorts.liftEncoderA, RobotPorts.liftEncoderB);
+    	LiftVictorSP1 = new  VictorSP( RobotPorts.liftMotor1 );
+    	LiftVictorSP2 = new VictorSP( RobotPorts.liftMotor2 );
+    	LiftEncoder = new Encoder( RobotPorts.liftEncoderA, RobotPorts.liftEncoderB );
     }
     
-    public void setLiftSpeed(double Something)
+    public void setLiftSpeed(double speed)
     {
-    	LiftVictorSP1.set(Something);
-    	LiftVictorSP2.set(Something);
+    	LiftVictorSP1.set( speed );
+    	LiftVictorSP2.set( speed );
     }
     
     public boolean liftequalsThrottle()
     {
-    	if (Robot.lift.getScaledToThrottle() == Robot.hi.throttle())
+    	if ( Robot.lift.getScaledToThrottle() == Robot.hi.throttle() )
     	{
     		return true;
     	}
@@ -73,18 +73,39 @@ public class Lift extends Subsystem
     	}
     }
     
+    /**
+     * Returns the difference between the positions of the lift and the throttle.
+     * 
+     * @author Michael
+     */
+    public double liftThrottleDiff()
+    {
+    	double liftPos = getScaledToThrottle(), throttlePos = Robot.hi.throttle();
+    	
+    	return liftPos - throttlePos;
+    }
+    
+    /**
+     * Sets the lift motors pulling the cage up
+     */
     public void upLift()
     {
-    	LiftVictorSP1.set(LiftMotorSpeed);
-    	LiftVictorSP2.set(LiftMotorSpeed);
+    	LiftVictorSP1.set( LiftMotorSpeed );
+    	LiftVictorSP2.set( LiftMotorSpeed );
     }
     
+    /**
+     * Sets the lift motors letting the cage down
+     */
     public void downLift()
     {
-    	LiftVictorSP1.set(-LiftMotorSpeed);
-    	LiftVictorSP2.set(-LiftMotorSpeed);
+    	LiftVictorSP1.set( -LiftMotorSpeed );
+    	LiftVictorSP2.set( -LiftMotorSpeed );
     }
     
+    /**
+     * Stops the lift motors.
+     */
     public void stopLift()
     {
     	LiftVictorSP1.set(0);
@@ -98,7 +119,7 @@ public class Lift extends Subsystem
     
     public double getScaledToThrottle()
     {
-    	return ((LiftEncoder.getRaw()*2)/countsToTopOfLift);
+    	return ( ( LiftEncoder.getRaw() * 2 ) / countsToTopOfLift );
     }
     
 }

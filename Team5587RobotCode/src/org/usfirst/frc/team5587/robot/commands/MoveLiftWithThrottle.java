@@ -27,6 +27,27 @@ public class MoveLiftWithThrottle extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
+    	//Michael's Improvements
+    	/*
+    	double diff = Robot.lift.liftThrottleDiff();
+    	int count = Robot.lift.getEncoderCount(), top = Robot.lift.countsToTopOfLift; 
+    	
+    	//If the lift's position is greater than the throttle's
+    	if( diff > 0 && count > 0 );
+    	{
+    		Robot.lift.downLift();
+    	}
+    	else if( diff < 0 && count < top )
+    	{
+    		Robot.lift.upLift();
+    	}
+    	else
+    	{
+    		Robot.lift.stopLift();
+    	}
+    	*/
+    	
+    	//Daren's original code
     	/*
     	if (Robot.lift.liftequalsThrottle())
     	{
@@ -35,11 +56,11 @@ public class MoveLiftWithThrottle extends Command
     	
     	if (Robot.lift.liftGreaterThanThrottle() && Robot.lift.getEncoderCount() > 0)
     	{
-    		if(Robot.lift.getEncoderCount() - (Robot.lift.countsToTopOfLift)/25 > )
+    		if( Robot.lift.getEncoderCount() - ( Robot.lift.countsToTopOfLift / 25 ) > )
     		{
-    			Robot.lift.setLiftSpeed(Robot.lift.LiftMotorSpeed*.5);
-    			
+    			Robot.lift.setLiftSpeed( Robot.lift.LiftMotorSpeed * .5 );
     		}
+    		
     		Robot.lift.downLift();
     	}
     	
