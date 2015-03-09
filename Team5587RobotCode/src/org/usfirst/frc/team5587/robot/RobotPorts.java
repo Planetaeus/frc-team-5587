@@ -10,10 +10,10 @@ public class RobotPorts
 	public static final int leftMotor2 = 3;
 	
 	// these are for the left side and right side of the drive train for the encoder ports
-	public static final int rightSideEncoderA = 2;
-	public static final int rightSideEncoderB = 3;
-	public static final int leftSideEncoderA = 4;
-	public static final int leftSideEncoderB = 5;
+	public static final int rightEncoderA = 2;
+	public static final int rightEncoderB = 3;
+	public static final int leftEncoderA = 4;
+	public static final int leftEncoderB = 5;
 	
 	// this is the ports for the lift motors on the PWM ports.
 	public static final int liftMotor1 = 9;
