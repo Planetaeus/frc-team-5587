@@ -1,0 +1,115 @@
+package org.usfirst.frc.team5587.robot.subsystems;
+
+import org.usfirst.frc.team5587.robot.RobotPorts;
+import org.usfirst.frc.team5587.robot.commands.drive.Drive;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
+
+public class Feet extends Subsystem 
+{
+	private Talon leftWheels1, leftWheels2, rightWheels1, rightWheels2;
+	private Encoder leftSideE, rightSideE;
+	private RobotDrive DriveTrain;
+	public static final int right = 0;
+	public static final int left = 1;
+	public static final double distancePerPulse = 0.5;
+	public static final double maxPower = 0.5;
+	
+	@Override
+	protected void initDefaultCommand() 
+	{
+		setDefaultCommand(new Drive());
+	}
+	
+	public Feet() 
+	{
+		leftWheels1 = new Talon(RobotPorts.leftMotor1);
+		leftWheels2= new Talon(RobotPorts.leftMotor2);
+		rightWheels1 = new Talon(RobotPorts.rightMotor1);
+		rightWheels2 = new Talon(RobotPorts.rightMotor2);
+		DriveTrain = new RobotDrive (leftWheels1, leftWheels2, rightWheels1, rightWheels2);
+    	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+    	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+    	
+    	rightSideE = new Encoder(RobotPorts.rightEncoderA, RobotPorts.rightEncoderB);
+    	rightSideE.setDistancePerPulse( distancePerPulse );
+    	
+    	leftSideE = new Encoder( RobotPorts.leftEncoderA, RobotPorts.leftEncoderB);
+    	leftSideE.setDistancePerPulse( distancePerPulse );
+	}
+	
+	public void arcadeDriving(Joystick Controller)
+	{
+    	double xValue = 0, yValue = 0;
+    	xValue = Controller.getX();
+    	yValue = Controller.getY();
+    	
+    	DriveTrain.arcadeDrive(xValue, yValue);
+    }
+    
+	public void stopFeet()
+	{
+		DriveTrain.stopMotor();
+	}
+	
+    public void goStraight()
+    {
+    	DriveTrain.arcadeDrive(1.0, 1.0);
+    }
+    
+    public void drive( double power, double curve )
+    {
+    	DriveTrain.drive( power * maxPower, curve );
+    }
+    
+    public double getDistance( int encoderNum )
+    { 
+    	switch(encoderNum)
+    	{
+    		case right: //if = 0
+    			return rightSideE.getDistance();//multipled by some number
+    		case left: //if = 1
+    			return leftSideE.getDistance();//multipled by some number
+    		default:
+    			return 0;
+    	}
+    }
+    
+    public double [] scaleDistance( double dist, double curve )
+    {
+    	double leftD;
+    	double rightD;
+    	
+    	if (curve < 0)
+    	{
+            double value = Math.log(-curve);
+            double ratio = (value - m_sensitivity) / (value + m_sensitivity);
+            if (ratio == 0) {
+                ratio = .0000000001;
+            }
+            leftD = dist / ratio;
+            rightD = dist;
+        }
+    	else if (curve > 0)
+    	{
+            double value = Math.log(curve);
+            double ratio = (value - m_sensitivity) / (value + m_sensitivity);
+            if (ratio == 0) {
+                ratio = .0000000001;
+            }
+            leftD = dist;
+            rightD = dist / ratio;
+        } 
+        else
+        {
+            leftD = dist;
+            rightD = dist;
+        }
+    	
+    	return { leftD, rightD };
+    }
+}

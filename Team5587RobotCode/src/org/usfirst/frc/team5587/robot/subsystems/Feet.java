@@ -16,6 +16,8 @@ public class Feet extends Subsystem
 	private RobotDrive DriveTrain;
 	public static final int right = 0;
 	public static final int left = 1;
+	public static final double distancePerPulse = 0.5;
+	public static final double maxPower = 0.5;
 	
 	@Override
 	protected void initDefaultCommand() 
@@ -32,8 +34,12 @@ public class Feet extends Subsystem
 		DriveTrain = new RobotDrive (leftWheels1, leftWheels2, rightWheels1, rightWheels2);
     	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
     	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-    	rightSideE = new Encoder(RobotPorts.rightSideEncoderA, RobotPorts.rightSideEncoderB);
-    	leftSideE = new Encoder(RobotPorts.leftSideEncoderA, RobotPorts.leftSideEncoderB);
+    	
+    	rightSideE = new Encoder(RobotPorts.rightEncoderA, RobotPorts.rightEncoderB, true );
+    	rightSideE.setDistancePerPulse( distancePerPulse );
+    	
+    	leftSideE = new Encoder( RobotPorts.leftEncoderA, RobotPorts.leftEncoderB, false );
+    	leftSideE.setDistancePerPulse( distancePerPulse );
 	}
 	
 	public void arcadeDriving(Joystick Controller)
@@ -49,22 +55,57 @@ public class Feet extends Subsystem
 	{
 		DriveTrain.stopMotor();
 	}
-	
-    public void goStraight()
+    
+    public void drive( double power, double curve )
     {
-    	DriveTrain.arcadeDrive(1.0, 1.0);
+    	DriveTrain.drive( power * maxPower, curve );
     }
     
-    public int getEncoderCount(int encoderNum)
+    public double getDistance( int encoderNum )
     { 
     	switch(encoderNum)
     	{
     		case right: //if = 0
-    			return rightSideE.getRaw();//multipled by some number
+    			return rightSideE.getDistance();//multipled by some number
     		case left: //if = 1
-    			return leftSideE.getRaw();//multipled by some number
+    			return leftSideE.getDistance();//multipled by some number
     		default:
     			return 0;
     	}
+    }
+    
+    public double [] scaleDistance( double dist, double curve )
+    {
+    	double leftD;
+    	double rightD;
+    	
+    	if (curve < 0)
+    	{
+            double value = Math.log(-curve);
+            double ratio = (value - 0.5) / (value + 0.5);
+            if (ratio == 0) {
+                ratio = .0000000001;
+            }
+            leftD = dist / ratio;
+            rightD = dist;
+        }
+    	else if (curve > 0)
+    	{
+            double value = Math.log(curve);
+            double ratio = (value - 0.5) / (value + 0.5);
+            if (ratio == 0) {
+                ratio = .0000000001;
+            }
+            leftD = dist;
+            rightD = dist / ratio;
+        } 
+        else
+        {
+            leftD = dist;
+            rightD = dist;
+        }
+    	double [] distances = { leftD, rightD };
+    	
+    	return distances;
     }
 }

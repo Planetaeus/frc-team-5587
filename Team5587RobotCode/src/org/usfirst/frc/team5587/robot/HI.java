@@ -16,7 +16,6 @@ public class HI
 	private JoystickButton PlusDriveSpeed;
 	private JoystickButton MinusDriveSpeed;
 	private JoystickButton LiftUp;
-	private JoystickButton LiftDown;
 	private JoystickButton StopLift;
 
 	public HI() 

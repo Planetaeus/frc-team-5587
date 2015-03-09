@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team5587.robot.RobotPorts;
 import org.usfirst.frc.team5587.robot.HI;
 import org.usfirst.frc.team5587.robot.subsystems.*;
 import org.usfirst.frc.team5587.robot.commands.*;
@@ -22,7 +23,7 @@ public class Robot extends IterativeRobot
     public void robotInit() 
     {
     	hi = new HI();
-    	autonomousCommand= new AutoBotMode();
+    	autonomousCommand = new AutoDrive( 5000, 0 );
     }
 	
 	public void disabledPeriodic() 
