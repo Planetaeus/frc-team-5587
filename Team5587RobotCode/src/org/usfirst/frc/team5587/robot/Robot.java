@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team5587.robot.RobotPorts;
 import org.usfirst.frc.team5587.robot.HI;
 import org.usfirst.frc.team5587.robot.subsystems.*;
 import org.usfirst.frc.team5587.robot.commands.*;
@@ -17,13 +16,15 @@ public class Robot extends IterativeRobot
 	public static HI hi;
 	public static final Feet feet = new Feet();
 	public static final Lift lift = new Lift();
-	Command autonomousCommand;
+	private Command autonomous;
+	private Command teleOp;
 	
 	
     public void robotInit() 
     {
     	hi = new HI();
-    	autonomousCommand = new AutoDrive( 5000, 0 );
+    	autonomous = new AutoDrive( 5000, 0 );
+    	teleOp = new TeleOpDrive();
     }
 	
 	public void disabledPeriodic() 
@@ -34,7 +35,7 @@ public class Robot extends IterativeRobot
     public void autonomousInit() 
     
     {
-        if (autonomousCommand != null) autonomousCommand.start();
+        if (autonomous != null) autonomous.start();
     }
 
     /**
@@ -47,7 +48,8 @@ public class Robot extends IterativeRobot
 
     public void teleopInit() 
     {
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomous != null) autonomous.cancel();
+        
     }
 
     /**

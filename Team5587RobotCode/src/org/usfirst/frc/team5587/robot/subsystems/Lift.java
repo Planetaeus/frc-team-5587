@@ -40,6 +40,7 @@ public class Lift extends Subsystem
     	LiftVictorSP2.set(Something);
     }
     
+    /*
     public double getScaledToThrottle()
     {  //gives double between 0/2 so it can be used with throttle
     	return ((LiftEncoder.getRaw()*2)/countsToTopOfLift);
@@ -121,6 +122,7 @@ public class Lift extends Subsystem
     	LiftVictorSP1.set(LiftMotorSpeed);
     	LiftVictorSP2.set(LiftMotorSpeed);
     }
+    
     public void upLiftAtSpeed(double Meow) //used alot in command MoveWithThrottle
     {
     	LiftVictorSP1.set(Meow);
@@ -132,6 +134,7 @@ public class Lift extends Subsystem
     	LiftVictorSP1.set(0);
     	LiftVictorSP2.set(0);
     }
+    */
     
     public void moveLiftWithJoystickSecond(Joystick Blah)
     {

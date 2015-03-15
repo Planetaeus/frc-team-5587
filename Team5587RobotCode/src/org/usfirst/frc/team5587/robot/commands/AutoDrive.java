@@ -15,7 +15,7 @@ public class AutoDrive extends Command
 	private double leftD;
 	private double rightD;
 	
-    public AutoDrive( double curve, double distance )
+    public AutoDrive( double distance, double curve )
     {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -51,16 +51,21 @@ public class AutoDrive extends Command
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
+    protected boolean isFinished()
+    {
+        return true;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted()
+    {
+    	
     }
 }

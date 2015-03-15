@@ -26,5 +26,7 @@ public class RobotPorts
 	//usb port order is here
 	public static final int joystickMain = 0;
 	public static final int joystickSecond = 1;
-
+	
+	//Button for slowing
+	public static final int slowTrigger = 5;
 }

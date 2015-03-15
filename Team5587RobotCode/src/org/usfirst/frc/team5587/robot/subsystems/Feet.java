@@ -11,13 +11,16 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Feet extends Subsystem 
 {
-	private Talon leftWheels1, leftWheels2, rightWheels1, rightWheels2;
-	private Encoder leftSideE, rightSideE;
-	private RobotDrive DriveTrain;
 	public static final int right = 0;
 	public static final int left = 1;
 	public static final double distancePerPulse = 0.5;
 	public static final double maxPower = 0.5;
+	public static final double slowPower = 0.25; 
+	
+	private Talon leftWheels1, leftWheels2, rightWheels1, rightWheels2;
+	private Encoder leftSideE, rightSideE;
+	private RobotDrive DriveTrain;
+	private boolean slow;
 	
 	@Override
 	protected void initDefaultCommand() 
@@ -40,6 +43,8 @@ public class Feet extends Subsystem
     	
     	leftSideE = new Encoder( RobotPorts.leftEncoderA, RobotPorts.leftEncoderB, false );
     	leftSideE.setDistancePerPulse( distancePerPulse );
+    	
+    	slow = false;
 	}
 	
 	public void arcadeDriving(Joystick Controller)
@@ -58,7 +63,14 @@ public class Feet extends Subsystem
     
     public void drive( double power, double curve )
     {
-    	DriveTrain.drive( power * maxPower, curve );
+    	if( slow )
+    	{
+    		DriveTrain.drive( power * slowPower, curve );
+    	}
+    	else
+    	{
+    		DriveTrain.drive( power * maxPower, curve );
+    	}
     }
     
     public double getDistance( int encoderNum )
@@ -107,5 +119,15 @@ public class Feet extends Subsystem
     	double [] distances = { leftD, rightD };
     	
     	return distances;
+    }
+    
+    public void setSlow()
+    {
+    	slow = true;
+    }
+    
+    public void unSlow()
+    {
+    	slow = false;
     }
 }
