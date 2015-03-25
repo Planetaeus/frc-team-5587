@@ -27,32 +27,53 @@ public class MoveLiftWithThrottle extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	//these loops will run the motors at specific encoder counts
+    	//Michael's Improvements
+    	/*
+    	double diff = Robot.lift.liftThrottleDiff();
+    	int count = Robot.lift.getEncoderCount(), top = Robot.lift.countsToTopOfLift; 
+    	
+    	//If the lift's position is greater than the throttle's
+    	if( diff > 0 && count > 0 );
+    	{
+    		Robot.lift.downLift();
+    	}
+    	else if( diff < 0 && count < top )
+    	{
+    		Robot.lift.upLift();
+    	}
+    	else
+    	{
+    		Robot.lift.stopLift();
+    	}
+    	*/
+    	
+    	//Daren's original code
+    	/*
     	if (Robot.lift.liftequalsThrottle())
     	{
-    		Robot.lift.upLiftAtSpeed(.02);//this speed should stop the lift
+    		Robot.lift.stopLift();
     	}
     	
-    	if (Robot.lift.liftAtBottom())
+    	if (Robot.lift.liftGreaterThanThrottle() && Robot.lift.getEncoderCount() > 0)
     	{
-    		Robot.lift.upLiftAtSpeed(.02);
+    		if( Robot.lift.getEncoderCount() - ( Robot.lift.countsToTopOfLift / 25 ) > )
+    		{
+    			Robot.lift.setLiftSpeed( Robot.lift.LiftMotorSpeed * .5 );
+    		}
+    		
+    		Robot.lift.downLift();
     	}
     	
-    	if (Robot.lift.liftGreaterThanThrottle() && Robot.lift.liftNotAtBottom())
+    	if (Robot.lift.liftLessThanThrottle() && Robot.lift.getEncoderCount() < Robot.lift.countsToTopOfLift)
     	{
-    		Robot.lift.upLiftAtSpeed(.02);
-    	}
-    	
-    	if (Robot.lift.liftLessThanThrottle() && Robot.lift.liftAtTop())
-    	{
-    		Robot.lift.upLiftAtSpeed(.3);//this speed should lift stuff
+    		Robot.lift.upLift();
     	}
     	
     	else
     	{
     		Robot.lift.stopLift();
     	}
-    	
+    	*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

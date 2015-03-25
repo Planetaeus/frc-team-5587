@@ -1,0 +1,35 @@
+1427044401244	Delete element
+1427044417223	Delete element
+1427044424979	Delete element
+1427044429602	Delete element
+1427044455443	Move compilation unit
+1427044466083	Delete element
+1427044490270	Move compilation unit
+1427044496473	Move compilation unit
+1427044538743	Delete element
+1427044561161	Move compilation unit
+1427044607143	Rename package 'org.usfirst.frc.team5587.robot.commands'
+1427044950800	Delete element
+1427044955009	Delete element
+1427045065470	Delete element
+1427045500749	Rename field 'rightMotor1'
+1427045522355	Rename field 'rightMotor2'
+1427045623730	Rename field 'leftMotor1'
+1427045640070	Rename field 'leftMotor2'
+1427045743703	Rename field 'rightEncoderA'
+1427045756974	Rename field 'rightEncoderB'
+1427045766500	Rename field 'leftEncoderA'
+1427045774583	Rename field 'leftEncoderB'
+1427045785382	Rename field 'liftMotor1'
+1427045797498	Rename field 'liftMotor2'
+1427045808938	Rename field 'liftEncoderA'
+1427045818444	Rename field 'liftEncoderB'
+1427045836831	Rename field 'joystickMain'
+1427045847894	Rename field 'joystickSecond'
+1427045854997	Rename field 'slowButton'
+1427045865764	Rename field 'unslowButton'
+1427045887378	Rename field 'liftButton'
+1427045897083	Move compilation unit
+1427045962884	Rename field 'lowerButton'
+1427045998097	Move compilation unit
+1427048027450	Move compilation unit

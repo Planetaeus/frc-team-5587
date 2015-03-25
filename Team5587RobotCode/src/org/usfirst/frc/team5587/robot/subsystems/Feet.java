@@ -30,18 +30,18 @@ public class Feet extends Subsystem
 	
 	public Feet() 
 	{
-		leftWheels1 = new Talon(RobotPorts.leftMotor1);
-		leftWheels2= new Talon(RobotPorts.leftMotor2);
-		rightWheels1 = new Talon(RobotPorts.rightMotor1);
-		rightWheels2 = new Talon(RobotPorts.rightMotor2);
+		leftWheels1 = new Talon(RobotPorts.LEFT_MOTOR1);
+		leftWheels2= new Talon(RobotPorts.LEFT_MOTOR2);
+		rightWheels1 = new Talon(RobotPorts.RIGHT_MOTOR1);
+		rightWheels2 = new Talon(RobotPorts.RIGHT_MOTOR2);
 		DriveTrain = new RobotDrive (leftWheels1, leftWheels2, rightWheels1, rightWheels2);
     	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
     	DriveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     	
-    	rightSideE = new Encoder(RobotPorts.rightEncoderA, RobotPorts.rightEncoderB, true );
+    	rightSideE = new Encoder(RobotPorts.RIGHT_ENCODER_A, RobotPorts.RIGHT_ENCODER_B, true );
     	rightSideE.setDistancePerPulse( distancePerPulse );
     	
-    	leftSideE = new Encoder( RobotPorts.leftEncoderA, RobotPorts.leftEncoderB, false );
+    	leftSideE = new Encoder( RobotPorts.LEFT_ENCODER_A, RobotPorts.LEFT_ENCODER_B, false );
     	leftSideE.setDistancePerPulse( distancePerPulse );
     	
     	slow = false;
@@ -129,5 +129,10 @@ public class Feet extends Subsystem
     public void unSlow()
     {
     	slow = false;
+    }
+    
+    public boolean getSlow()
+    {
+    	return slow;
     }
 }
